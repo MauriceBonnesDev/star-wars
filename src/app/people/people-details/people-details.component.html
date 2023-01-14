@@ -1,0 +1,20 @@
+<div class="details">
+  <div class="details__container" *ngIf="isLoaded; else loading">
+    <a [ngClass]="{'disabled': character.id === 1}" [routerLink]="['/people', character.id! - 1]" class="details__button"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
+    <div class="details__character">
+      <img class="details__image" [src]="character.image" />
+      <p class="details__character--mass">{{ character.mass }}kg</p>
+      <p class="details__character--height">{{ character.height / 100 }}m</p>
+    </div>
+
+    <div class="details__content">
+      <h1 class="details__content--name">{{ character.name }} <br /><span class="details__content--species">{{ character.species }}</span></h1>
+      <p class="details__content--gender">Gender: {{ character.gender }}</p>
+      <p>{{ description }}</p>
+    </div>
+    <a (click)="getData()" [ngClass]="{'disabled': character.id === 82}" [routerLink]="['/people', character.id! + 1]" class="details__button"><fa-icon [icon]="faArrowRight"></fa-icon></a>
+  </div>
+  <ng-template class="margin" #loading>
+    <app-loading></app-loading>
+  </ng-template>
+</div>

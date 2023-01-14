@@ -1,0 +1,44 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15rem 0 2rem;
+
+  &__logo {
+    height: 6.25rem;
+  }
+
+  &__list {
+    list-style: none;
+    width: 35rem;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+
+    &--item {
+
+    }
+
+    &--link {
+      text-decoration: none;
+      color: #d3d3d3;
+    }
+  }
+}
+
+.active {
+  color: #fff;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10000px;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #fff;
+  }
+}

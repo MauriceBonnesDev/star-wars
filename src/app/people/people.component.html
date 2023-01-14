@@ -1,0 +1,47 @@
+<div [ngSwitch]="loadingStatus" class="table__container">
+  <div class="header">
+    <div class="search">
+      <fa-icon class="search__icon search__icon--magnifying" [icon]="faMagnifyingGlass"></fa-icon>
+      <input [formControl]="searchControl" type="text" class="search__input" placeholder="Search">
+      <fa-icon *ngIf="!isSearching; else searching" (click)="deleteInput()" class="search__icon search__icon--times" [icon]="faTimes"></fa-icon>
+      <ng-template #searching>
+        <app-searching></app-searching>
+      </ng-template>
+    </div>
+    <div class="add">
+      <a class="btn">Add</a>
+    </div>
+  </div>
+  <table *ngSwitchCase="'table'" mat-table [dataSource]="people" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Gender</th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; let i = index columns: displayedColumns;" [routerLink]="['/people', row.id ]"></tr>
+  </table>
+  <p class="info" *ngSwitchCase="'none'">
+    No Characters found
+  </p>
+  <app-loading *ngSwitchDefault class="info"></app-loading>
+</div>
+<mat-paginator #paginator
+               class="paginator"
+               (page)="handlePageEvent($event)"
+               [color]=""
+               [length]="82"
+               [pageSize]="10"
+               [showFirstLastButtons]="true"
+               [pageSizeOptions]="[10]"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>
