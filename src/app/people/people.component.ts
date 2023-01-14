@@ -26,12 +26,14 @@ export class PeopleComponent implements OnInit {
   loadingStatus = '';
   peopleDisplayed: People[] = [];
   selectionId: number = 0;
+  dialogOpen = false;
 
   searchControl = new FormControl();
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
-  constructor(private peopleService: PeopleService, private dialog: MatDialog) {
+  constructor(private peopleService: PeopleService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class PeopleComponent implements OnInit {
   searchCharacter() {
     this.searchControl.valueChanges.pipe(
       tap(() => this.isSearching = true),
-      startWith(''),
+      // startWith(''),
       debounceTime(300),
       switchMap((searchTerm:string) => this.peopleService.searchCharacter(searchTerm)),
       map(peopleSwapi => {
@@ -55,19 +57,13 @@ export class PeopleComponent implements OnInit {
     ).subscribe(people => {
       this.people = people;
       this.isSearching = false;
-      if (this.peopleDisplayed.length === 0) {
+      if (this.people.length === 0) {
         this.loadingStatus = 'none';
       } else {
         this.loadingStatus = 'table';
       }
     })
   }
-
-  // searchCharacter() {
-  //   this.searchControl.valueChanges.subscribe((searchTerm: string) => {
-  //     this.peopleDisplayed = this.people.filter(char => {return char.name.includes(searchTerm)});
-  //   })
-  // }
 
   loadPeopleData(paginationToken: string | null) {
     this.people = [];
@@ -105,7 +101,7 @@ export class PeopleComponent implements OnInit {
   }
 
   openAdd(): void {
-    this.dialog.open(PeopleAddDialogComponent, )
+
   }
 
   deleteInput() {

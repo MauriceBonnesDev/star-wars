@@ -22,15 +22,15 @@ p, h1 {
   }
 
   &__character {
-    width: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    margin-left: 10rem;
 
     &--mass {
       position: absolute;
-      left: 0;
+      left: -7.5rem;
       bottom: 1rem;
       padding: 1rem 2rem;
       background: rgba(255, 255, 255, 0.45);
@@ -71,7 +71,7 @@ p, h1 {
 
     &--height {
       position: absolute;
-      left: -2rem;
+      left: -10rem;
       top: 5%;
       padding: 1rem 2rem;
       background: rgba(255, 255, 255, 0.45);
@@ -117,6 +117,16 @@ p, h1 {
     &--name {
       font-size: 2.2rem;
       font-weight: 100;
+      position: relative;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 5rem;
+        border-bottom: 0.2rem solid #000;
+        position: absolute;
+        bottom: -0.6rem;
+        left: 0;
+      }
     }
 
     &--species {

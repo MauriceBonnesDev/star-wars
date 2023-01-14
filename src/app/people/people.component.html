@@ -9,7 +9,7 @@
       </ng-template>
     </div>
     <div class="add">
-      <a class="btn">Add</a>
+      <a class="btn" (click)="dialogOpen = true" >Add</a>
     </div>
   </div>
   <table *ngSwitchCase="'table'" mat-table [dataSource]="people" class="mat-elevation-z8">
@@ -45,3 +45,5 @@
                [pageIndex]="pageIndex"
                aria-label="Select page">
 </mat-paginator>
+
+<app-people-add-dialog class="modal" *ngIf="dialogOpen"></app-people-add-dialog>
