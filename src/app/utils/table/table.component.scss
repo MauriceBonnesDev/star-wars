@@ -1,0 +1,13 @@
+table {
+  background-color: inherit;
+
+  td, th {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .mat-mdc-row:hover {
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+  }
+}

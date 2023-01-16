@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {map, Subscription, switchMap, tap} from "rxjs";
+import {map, of, Subscription, switchMap, tap} from "rxjs";
 import {PeopleService} from "../../services/people.service";
 import {People} from "../../interfaces/people";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -18,39 +18,87 @@ export class PeopleDetailsComponent implements OnInit, OnDestroy {
   character: People = {name: '', gender: '', height: 0, mass: 0, species: '', birthYear: ''};
   isLoaded = false;
   description: string = '';
+  ownChar: boolean = false;
+
   constructor(private route: ActivatedRoute, private peopleService: PeopleService) {}
 
   ngOnInit(): void {
     this.getData();
   }
 
+  // getData(): void {
+  //   this.isLoaded = false;
+  //   this.paramsSubscription = this.route.params.pipe(
+  //     switchMap(params => this.peopleService.getAkababCharacter(params['id'])),
+  //     tap(char => this.character.species = char.species),
+  //     tap(char => this.character.image = char.image),
+  //     tap(char => this.character.id = char.id),
+  //     switchMap(char => this.peopleService.getSwapiCharacter(char.id)),
+  //     map(char => {
+  //       this.character.mass = Number(char.mass);
+  //       this.character.height = Number(char.height);
+  //       this.character.gender = char.gender;
+  //       this.character.name = char.name;
+  //       this.character.birthYear = char.birth_year;
+  //     }),
+  //     switchMap(() => this.peopleService.getSpecies(this.character.species)
+  //     )
+  //   ).subscribe( species => {
+  //       const {average_height, average_lifespan, classification, language, name} = species.results[0];
+  //       this.description = `${ this.character.name } was born in year ${ this.character.birthYear } and belongs to the species ${ name }.
+  //                           ${ average_height === 'n/a' ? `The average height of a ${ classification } is not defined.`:
+  //                           `They have an average height of ${ Number(average_height) / 100 }m and can be classified as a
+  //                           ${ classification }.`}  Usually they reach an age of ${ average_lifespan } years.
+  //                           ${ language === 'n/a' ? `They do not have a native language.` : `Their native language is ${ language }.`}`;
+  //       this.isLoaded = true;
+  //     }
+  //   )
+  // }
+
   getData(): void {
     this.isLoaded = false;
     this.paramsSubscription = this.route.params.pipe(
-      switchMap(params => this.peopleService.getAkababCharacter(params['id'])),
-      tap(char => this.character.species = char.species),
-      tap(char => this.character.image = char.image),
-      tap(char => this.character.id = char.id),
-      switchMap(char => this.peopleService.getSwapiCharacter(char.id)),
-      map(char => {
-        this.character.mass = Number(char.mass);
-        this.character.height = Number(char.height);
-        this.character.gender = char.gender;
-        this.character.name = char.name;
-        this.character.birthYear = char.birth_year;
+      switchMap(params => {
+        if (params['id'] >= 84) {
+          const {id, name, height, mass, gender, birthYear, species} = this.route.snapshot.queryParams;
+          const char: People = {id, name, height, mass, gender, birthYear, species, image: '../../../assets/clone-trooper.png'};
+          this.character = char;
+          this.ownChar = true;
+          return of(char);
+        } else {
+          return this.peopleService.getAkababCharacter(params['id']).pipe(
+            tap(char => this.character.species = char.species),
+            tap(char => this.character.image = char.image),
+            tap(char => this.character.id = char.id),
+            switchMap(char => this.peopleService.getSwapiCharacter(char.id)),
+            map(char => {
+              this.character.mass = Number(char.mass);
+              this.character.height = Number(char.height);
+              this.character.gender = char.gender;
+              this.character.name = char.name;
+              this.character.birthYear = char.birth_year;
+            }),
+            switchMap(() => this.peopleService.getSpecies(this.character.species)
+            )
+          )
+        }
       }),
-      switchMap(() => this.peopleService.getSpecies(this.character.species)
-      )
     ).subscribe( species => {
+      if (this.ownChar) {
+        console.log(this.character);
+        this.description = `${ this.character.name } is a uniquely created Character that was born in
+                            ${ this.character.birthYear}. ${ this.character.name } belongs to the
+                            species ${ this.character.species }.`
+      } else {
         const {average_height, average_lifespan, classification, language, name} = species.results[0];
         this.description = `${ this.character.name } was born in year ${ this.character.birthYear } and belongs to the species ${ name }.
                             ${ average_height === 'n/a' ? `The average height of a ${ classification } is not defined.`:
-                            `They have an average height of ${ Number(average_height) / 100 }m and can be classified as a
+          `They have an average height of ${ Number(average_height) / 100 }m and can be classified as a
                             ${ classification }.`}  Usually they reach an age of ${ average_lifespan } years.
                             ${ language === 'n/a' ? `They do not have a native language.` : `Their native language is ${ language }.`}`;
-        this.isLoaded = true;
       }
-
+      this.isLoaded = true;
+      }
     )
   }
 

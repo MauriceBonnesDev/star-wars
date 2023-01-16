@@ -12,23 +12,7 @@
       <a class="btn" (click)="dialogOpen = true" >Add</a>
     </div>
   </div>
-  <table *ngSwitchCase="'table'" mat-table [dataSource]="people" class="mat-elevation-z8">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef>Gender</th>
-      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; let i = index columns: displayedColumns;" [routerLink]="['/people', row.id ]"></tr>
-  </table>
+  <app-table class="table" [data]="people" [displayedColumns]="displayedColumns" columnName="Name" link="people" *ngSwitchCase="'table'"></app-table>
   <p class="info" *ngSwitchCase="'none'">
     No Characters found
   </p>
@@ -38,12 +22,12 @@
                class="paginator"
                (page)="handlePageEvent($event)"
                [color]=""
-               [length]="82"
+               [length]="peopleLength"
                [pageSize]="10"
-               [showFirstLastButtons]="true"
+               [showFirstLastButtons]="false"
                [pageSizeOptions]="[10]"
                [pageIndex]="pageIndex"
                aria-label="Select page">
 </mat-paginator>
 
-<app-people-add-dialog class="modal" *ngIf="dialogOpen"></app-people-add-dialog>
+<app-people-add-dialog (closeEvent)="onClose($event)" class="modal" *ngIf="dialogOpen"></app-people-add-dialog>

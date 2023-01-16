@@ -7,18 +7,8 @@
   min-height: 50%;
 }
 
-table {
-  background-color: inherit;
-
-  td, th {
-    color: #fff;
-    border-bottom-color: rgba(255, 255, 255, 0.15);
-  }
-
-  .mat-mdc-row:hover {
-    background: rgba(255, 255, 255, 0.15);
-    cursor: pointer;
-  }
+.table {
+  width: 100%;
 }
 
 .paginator {
@@ -93,6 +83,14 @@ table {
   padding: 0.5rem 1.5rem;
   border-radius: 5rem;
   cursor: pointer;
+  display: inline-block;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    transform: translate(2px, -2px);
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 2px 2px 4px 1px rgba(255,255,255, 0.15);
+  }
 }
 
 .info {

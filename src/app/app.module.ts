@@ -17,8 +17,10 @@ import {MatCardModule} from "@angular/material/card";
 import { PeopleAddDialogComponent } from './people/people-add-dialog/people-add-dialog.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatPaginatorModule} from "@angular/material/paginator";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SearchingComponent } from './utils/searching/searching.component';
+import { TableComponent } from './utils/table/table.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { SearchingComponent } from './utils/searching/searching.component';
     LoadingComponent,
     PeopleDetailsComponent,
     PeopleAddDialogComponent,
-    SearchingComponent
+    SearchingComponent,
+    TableComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { SearchingComponent } from './utils/searching/searching.component';
     MatCardModule,
     FontAwesomeModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

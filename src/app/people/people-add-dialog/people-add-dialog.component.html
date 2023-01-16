@@ -3,18 +3,80 @@
     <img class="dialog__image" src="../../../assets/darth-vader.jpeg" alt="Darth Vader">
     <div class="form">
       <h2 class="dialog__heading">Add a new Character</h2>
-      <div class="form__control">
-        <label class="form__label">Name</label>
-        <input type="text" class="form__input" placeholder="Enter your name"/>
-      </div>
-      <div class="form__control">
-        <label class="form__label">Mass</label>
-        <input type="text" class="form__input" placeholder="Enter your mass"/>
-      </div>
-      <div class="form__control">
-        <label class="form__label">Height</label>
-        <input type="text" class="form__input" placeholder="Enter your height"/>
-      </div>
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="form__control">
+          <label class="form__label">Name</label>
+          <input
+            type="text"
+            class="form__input"
+            ngModel
+            name="name"
+            required
+            #name="ngModel"
+            placeholder="Enter your name"/>
+          <span *ngIf="name.invalid && name.touched" class="error">Please enter a valid name</span>
+        </div>
+        <div class="form__control">
+          <label class="form__label">Mass</label>
+          <input
+            type="text"
+            class="form__input"
+            ngModel
+            name="mass"
+            required
+            pattern="([0-9]+[.])?[0-9]+"
+            #mass="ngModel"
+            placeholder="Enter your mass"/>
+          <span *ngIf="mass.invalid && mass.touched" class="error">Please enter a valid mass (KG)</span>
+        </div>
+        <div class="form__control">
+          <label class="form__label">Height</label>
+          <input
+            type="text"
+            class="form__input"
+            ngModel
+            name="height"
+            required
+            #height="ngModel"
+            pattern="[1-9][0-9]*$"
+            placeholder="Enter your height"/>
+          <span *ngIf="height.invalid && height.touched" class="error">Please enter a valid height (cm)</span>
+        </div>
+        <div class="form__control">
+          <label class="form__label">Gender</label>
+          <input
+            type="text"
+            class="form__input"
+            ngModel
+            name="gender"
+            placeholder="Enter your gender"/>
+        </div>
+        <div class="form__control">
+          <label class="form__label">Species</label>
+          <input
+            type="text"
+            class="form__input"
+            ngModel
+            name="species"
+            placeholder="Enter your species"/>
+        </div>
+        <div class="form__control">
+          <label class="form__label">Birth Year</label>
+          <input
+            type="text"
+            class="form__input"
+            ngModel
+            name="birthYear"
+            placeholder="Enter your birth year"/>
+        </div>
+        <div class="form__control">
+          <button
+            type="submit"
+            [disabled]="f.invalid"
+            class="form__button">Create Character</button>
+        </div>
+      </form>
     </div>
+    <a (click)="onClose(null)" class="btn__close"><fa-icon [icon]="faTimes"></fa-icon></a>
   </div>
 </div>
