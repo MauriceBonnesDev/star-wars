@@ -1,0 +1,18 @@
+<div [ngSwitch]="loadingStatus" class="table__container">
+  <h1 class="table__heading">Vehicles</h1>
+  <app-table class="table" [data]="vehicles" [displayedColumns]="displayedColumns" [columnNames]="columnNames" link="people" *ngSwitchCase="'table'"></app-table>
+  <p class="info" *ngSwitchCase="'none'">
+    No Vehicles found
+  </p>
+  <app-loading *ngSwitchDefault class="info"></app-loading>
+</div>
+<mat-paginator class="paginator"
+               (page)="handlePageEvent($event)"
+               [color]=""
+               [length]="vehiclesLength"
+               [pageSize]="10"
+               [showFirstLastButtons]="false"
+               [pageSizeOptions]="[10]"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>

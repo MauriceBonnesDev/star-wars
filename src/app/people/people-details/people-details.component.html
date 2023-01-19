@@ -1,6 +1,6 @@
 <div class="details">
   <div class="details__container" *ngIf="isLoaded; else loading">
-    <a [ngClass]="{'disabled': character.id === 1}" [routerLink]="['/people', character.id! - 1]" class="details__button"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
+    <a [ngClass]="{'details__button--disabled': character.id === 1}" [routerLink]="['/people', character.id! - 1]" class="details__button"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
     <div class="details__character">
       <img class="details__image" [src]="character.image" />
       <p class="details__character--mass">{{ character.mass }} KG</p>

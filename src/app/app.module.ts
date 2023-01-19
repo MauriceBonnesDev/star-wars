@@ -21,6 +21,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SearchingComponent } from './utils/searching/searching.component';
 import { TableComponent } from './utils/table/table.component';
 import { HomeComponent } from './home/home.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
+import { PlanetsComponent } from './planets/planets.component';
+import { MoviesComponent } from './movies/movies.component';
+import { SpeciesComponent } from './species/species.component';
 
 
 @NgModule({
@@ -33,7 +37,11 @@ import { HomeComponent } from './home/home.component';
     PeopleAddDialogComponent,
     SearchingComponent,
     TableComponent,
-    HomeComponent
+    HomeComponent,
+    VehiclesComponent,
+    PlanetsComponent,
+    MoviesComponent,
+    SpeciesComponent
   ],
   imports: [
     BrowserModule,

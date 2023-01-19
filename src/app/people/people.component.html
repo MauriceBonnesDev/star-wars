@@ -1,4 +1,5 @@
 <div [ngSwitch]="loadingStatus" class="table__container">
+  <h1 class="table__heading">Characters</h1>
   <div class="header">
     <div class="search">
       <fa-icon class="search__icon search__icon--magnifying" [icon]="faMagnifyingGlass"></fa-icon>
@@ -12,14 +13,13 @@
       <a class="btn" (click)="dialogOpen = true" >Add</a>
     </div>
   </div>
-  <app-table class="table" [data]="people" [displayedColumns]="displayedColumns" columnName="Name" link="people" *ngSwitchCase="'table'"></app-table>
+  <app-table class="table" [data]="people" [displayedColumns]="displayedColumns" [columnNames]="['name']" link="people" *ngSwitchCase="'table'"></app-table>
   <p class="info" *ngSwitchCase="'none'">
     No Characters found
   </p>
   <app-loading *ngSwitchDefault class="info"></app-loading>
 </div>
-<mat-paginator #paginator
-               class="paginator"
+<mat-paginator class="paginator"
                (page)="handlePageEvent($event)"
                [color]=""
                [length]="peopleLength"

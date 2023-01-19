@@ -1,0 +1,18 @@
+<div [ngSwitch]="loadingStatus" class="table__container">
+  <h1 class="table__heading">Species</h1>
+  <app-table class="table" [data]="species" [displayedColumns]="displayedColumns" [columnNames]="displayedColumns" link="people" *ngSwitchCase="'table'"></app-table>
+  <p class="info" *ngSwitchCase="'none'">
+    No Species found
+  </p>
+  <app-loading *ngSwitchDefault class="info"></app-loading>
+</div>
+<mat-paginator class="paginator"
+               (page)="handlePageEvent($event)"
+               [color]=""
+               [length]="speciesLength"
+               [pageSize]="10"
+               [showFirstLastButtons]="false"
+               [pageSizeOptions]="[10]"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>

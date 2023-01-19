@@ -136,12 +136,6 @@ p, h1 {
       font-size: 1rem;
       color: rgba(255, 255, 255, 0.5);
     }
-
-    &--gender {
-
-    }
-
-
   }
 
   &__button {
@@ -152,11 +146,16 @@ p, h1 {
     border: none;
     font-size: 2rem;
     color: #000;
-  }
-}
+    transition: 0.3s ease-in-out;
 
-.disabled {
-  pointer-events: none;
-  cursor: default;
-  background: #d3d3d3;
+    &:hover {
+      transform: scale(110%);
+    }
+
+    &--disabled {
+      pointer-events: none;
+      cursor: default;
+      background: #d3d3d3;
+    }
+  }
 }

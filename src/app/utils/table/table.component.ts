@@ -7,8 +7,8 @@ import {AfterViewChecked, Component, Input } from '@angular/core';
 })
 export class TableComponent implements AfterViewChecked {
   @Input() data: any[] = [''];
-  @Input() columnName: string = 'Name';
-  @Input() displayedColumns: string[] = ['Name'];
+  @Input() columnNames: string[] = [];
+  @Input() displayedColumns: string[] = [];
   @Input() link: string = 'people';
 
   queryParams: object[] = [];

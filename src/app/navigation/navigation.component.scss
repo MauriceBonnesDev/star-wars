@@ -6,6 +6,12 @@
 
   &__logo {
     height: 6.25rem;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+      transform: scale(110%);
+    }
   }
 
   &__list {
@@ -14,31 +20,38 @@
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
-
-    &--item {
-
-    }
-
-    &--link {
-      text-decoration: none;
-      color: #d3d3d3;
-    }
   }
-}
 
-.active {
-  color: #fff;
-  position: relative;
+  &__link {
+    text-decoration: none;
+    color: #d3d3d3;
+    transition: 0.3s ease-in-out;
+    display: inline-block;
 
-  &:after {
-    content: '';
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10000px;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: #fff;
+    &--active {
+      color: #fff;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 10000px;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: #fff;
+      }
+    }
+
+    &:not(&--disabled):hover {
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    &--disabled {
+      cursor: auto;
+    }
   }
 }

@@ -1,5 +1,8 @@
 export interface Species {
-
+  Name: string;
+  Classification: string;
+  AverageHeight: string;
+  AverageLifespan: string;
 }
 
 export interface SpeciesSwapi {

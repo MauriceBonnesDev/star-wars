@@ -16,7 +16,7 @@ import {StateService} from "../services/state.service";
 export class PeopleComponent implements OnInit {
   people: People[] = [];
   peopleLength:number = 83;
-  displayedColumns: string[] = ['Name'];
+  displayedColumns: string[] = ['name'];
   previousPageToken: string | null = null;
   nextPageToken: string | null = null;
   pageIndex: number = 0;
@@ -73,7 +73,7 @@ export class PeopleComponent implements OnInit {
   loadPeopleData(paginationToken: string | null) {
     this.people = [];
     this.loadingStatus = 'loading';
-    this.peopleService.getPeople(paginationToken).pipe(
+    this.peopleService.getAllPeople(paginationToken).pipe(
       map(peopleSwapi => {
         this.previousPageToken = peopleSwapi.previous;
         this.nextPageToken = peopleSwapi.next;
