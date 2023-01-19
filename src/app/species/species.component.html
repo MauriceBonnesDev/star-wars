@@ -1,6 +1,6 @@
 <div [ngSwitch]="loadingStatus" class="table__container">
   <h1 class="table__heading">Species</h1>
-  <app-table class="table" [data]="species" [displayedColumns]="displayedColumns" [columnNames]="displayedColumns" link="people" *ngSwitchCase="'table'"></app-table>
+  <app-table class="table" [data]="species" [displayedColumns]="displayedColumns" [disabled]="true" [columnNames]="displayedColumns" link="people" *ngSwitchCase="'table'"></app-table>
   <p class="info" *ngSwitchCase="'none'">
     No Species found
   </p>

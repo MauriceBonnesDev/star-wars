@@ -32,8 +32,9 @@ export class MoviesComponent {
     this.loadingStatus = 'loading';
     this.moviesService.getAllMovies().pipe(
       map(movieSwapi => {
-        return movieSwapi.results.map(movie => {
+        return movieSwapi.results.map((movie, index) => {
             let m: Movie = {
+              id: index + 1,
               Title: movie.title,
               Episode: movie.episode_id,
               Director: movie.director,
@@ -46,6 +47,7 @@ export class MoviesComponent {
     ).subscribe(movies => {
       console.log(movies);
       this.movies = movies;
+      this.movies = this.movies.sort((a:Movie, b:Movie) => a.Episode > b.Episode ? 1 : -1);
 
       if (this.movies.length === 0) {
         this.loadingStatus = 'none'

@@ -11,3 +11,8 @@ table {
     cursor: pointer;
   }
 }
+
+tr.disabled {
+  pointer-events: none;
+  cursor: default;
+}

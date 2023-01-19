@@ -67,4 +67,9 @@ export class PeopleService {
       return this.http.get<SwapiResponse<SpeciesSwapi>>(paginationToken);
     }
   }
+
+  getMovieData(id: number): Observable<MovieSwapi> {
+    console.log(id);
+    return this.http.get<MovieSwapi>(`${ this.swapiBaseURL }/films/${ id }`)
+  }
 }

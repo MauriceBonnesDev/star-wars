@@ -25,6 +25,7 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { MoviesComponent } from './movies/movies.component';
 import { SpeciesComponent } from './species/species.component';
+import { MovieCrawlTextComponent } from './movies/movie-crawl-text/movie-crawl-text.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { SpeciesComponent } from './species/species.component';
     VehiclesComponent,
     PlanetsComponent,
     MoviesComponent,
-    SpeciesComponent
+    SpeciesComponent,
+    MovieCrawlTextComponent
   ],
   imports: [
     BrowserModule,

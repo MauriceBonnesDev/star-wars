@@ -1,6 +1,6 @@
 <div [ngSwitch]="loadingStatus" class="table__container">
   <h1 class="table__heading">Planets</h1>
-  <app-table class="table" [data]="planets" [displayedColumns]="displayedColumns" [columnNames]="displayedColumns" link="people" *ngSwitchCase="'table'"></app-table>
+  <app-table class="table" [data]="planets" [displayedColumns]="displayedColumns" [disabled]="true" [columnNames]="displayedColumns" link="people" *ngSwitchCase="'table'"></app-table>
   <p class="info" *ngSwitchCase="'none'">
     No Planets found
   </p>
